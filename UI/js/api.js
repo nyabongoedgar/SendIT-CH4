@@ -20,7 +20,7 @@ class Api {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-type':'application/json',
+                'Content-Type':'application/json',
                 'Authorization': 'Bearer ' + '${token}'
             },
             body : JSON.stringify(data)
@@ -33,7 +33,7 @@ class Api {
         const response = await fetch (url, {
             method: 'PUT',
             headers: {
-                'Content-type':'application/json',
+                'Content-Type':'application/json',
                 'Authorization': 'Bearer ' + '${token}'
             },
             body: JSON.stringify(data)
@@ -44,9 +44,10 @@ class Api {
 
     async register(url,data){
         const response = await fetch(url, {
-            method: 'POST',
+            method: "POST",
+            mod: "cors",
             headers: {
-                'Content-type':'application/json'
+                "Content-Type":"application/json; charset=utf-8",
             },
             body : JSON.stringify(data)
         });

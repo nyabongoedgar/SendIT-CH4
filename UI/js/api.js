@@ -42,6 +42,18 @@ class Api {
         return response_data
     }
 
+    async register(url,data){
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body : JSON.stringify(data)
+        });
+        const response_data = await response.json();
+        return response_data
+    }
+
 
 
 

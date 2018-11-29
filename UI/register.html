@@ -3,31 +3,28 @@
     <head>
         <title>SendIT - register</title>
         <link href="css/register.css" type="text/css" rel="stylesheet">
-		<link href="css/main.css" type="text/css" rel="stylesheet">
+        <link href="css/main.css" type="text/css" rel="stylesheet">
+        <script src="js/api.js"></script>
+        <script src="js/user.js"></script>
         
     </head>
     <body>
-         
-           
-            
        
-    
-
-        
             <div class="container">
                 <h1>SIGN UP</h1>
         <table width="80%" align="center" border="0">
-        <form action="index.html">
+        <form action="#">
         <tr><td> 
-        <input  required="" name="username" placeholder="Username" type="text"></td></tr>
+        <input  required="" name="username" id="username" placeholder="Username" type="text"></td></tr>
         <tr><td>
-        <input  required="" name="email" placeholder="Email Address" type="text"> </td></tr>                            
+        <input  required="" name="email" id="email" placeholder="Email Address" type="text"> </td></tr>                            
         <tr><td> 
-        <input required="" name="password" placeholder="Password" type="password">  </td></tr>
+        <input required="" name="password" id="password" placeholder="Password" type="password">  </td></tr>
         <tr><td> 
-        <input  required="" name="password2" placeholder="Confirm Password" type="password"> </td></tr>
+        <input  required="" name="password2" id="password2" placeholder="Confirm Password" type="password"> </td></tr>
         <tr><td> 
-        <button type="submit" id="sbt-button">Create account</button></td></tr>
+        <button type="submit" id="sbt-button" onclick="register_user()">Create account</button></td></tr>
+        <tr><td><span><p id="error"></p></span></td></tr>
         <td><p >I have an account!  <a href="index.html">Login</a></td>
 
     </table>

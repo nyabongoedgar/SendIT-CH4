@@ -4,8 +4,9 @@
         <title>Home - SendIT</title>
         <link href="css/main.css" type="text/css" rel="stylesheet">
         <link href="css/index.css" type="text/css" rel="stylesheet">
-        <script src="js/main.js"></script>
+        <!-- <script src="js/main.js"></script> -->
         <script src="js/api.js"></script>
+        <script src="js/user.js"></script>
        
     </head>
     <body>
@@ -13,13 +14,13 @@
 
        
                 <div class="container">
-                <form id="login_form">
+                <form id="login_form" action="#">
                     <table width="80%" align="center" border="0">
                     <h1>SIGN IN</h1>
                     <tr><td><input type="text" name="username" placeholder="Username" id="username" required></td> </tr>
                     <tr><td><input type="password" name="password" placeholder="Password" id="password" required></td></tr>
-                    <tr><td><button type="submit" id="sbt-button">SUBMIT</button></td></tr>
-                  
+                    <tr><td><button type="submit" id="sbt-button" onclick="login()">SUBMIT</button></td></tr>
+                  <tr><td><span><p id="error"></p></span></td></tr>
                     <tr>
                             <td><p>Dont have an account ?. <a href="register.html">Create account</a></p></td>
                           </tr>

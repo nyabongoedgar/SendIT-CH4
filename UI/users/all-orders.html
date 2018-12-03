@@ -6,8 +6,10 @@
 		<link href="../css/main.css" type="text/css" rel="stylesheet">
         <link href="../css/view-all-orders.css" type="text/css" rel="stylesheet">
         <script src="../js/main.js"></script>
+        <script src="../js/api.js"></script>
+        <script src="../js/parcel.js"></script>
     </head>
-    <body>
+    <body onload="get_parcels()">
         <div id="wrapper">
                 <div id="menu-icon-div"><span id="menu-icon" onclick="display()">&#9776;</span></div> 
                 <nav>
@@ -29,8 +31,8 @@
         <div id="content">
             <div id="order-view-table">
              <caption>All orders</caption> 
-               <table>
-                    <!-- <tr><th>#</th><th>Parcel ID</th><th>Status</th><th>Set Pickup Area</th><th>Weight(kg)</th><th>Delivery Price Quote</th><th>Receiver name</th><th>Receiver telephone</th></tr> -->
+               <table id="table">
+                   <tr><th>Parcel ID</th><th>Parcel Description</th><th>Parcel source</th><th>Parcel Destination</th><th>Current location</th><th>Receiver name</th><th>Receiver telephone</th><th>Price quote</th><th>Status</th><th>Date placed</th></tr>
                     <tr id="tabrow">
                         
                     </tr>

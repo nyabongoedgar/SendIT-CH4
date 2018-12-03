@@ -22,6 +22,7 @@ function login(){
         else{
             token = resp_data["token"];
             localStorage.setItem('token',token);
+            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/UI/users/create-parcel-delivery-order.html")
         }
     })
     .catch(error => {

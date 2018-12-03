@@ -6,6 +6,9 @@
         <title>Create-Parcel-delivery-order (user) </title>
         <link href="../css/main.css" type="text/css" rel="stylesheet">
         <script src="../js/main.js"></script>
+        <script src="../js/api.js"></script>
+        <script src="../js/parcel.js"></script>
+        
     </head>
     <body>
         <div id="wrapper">
@@ -29,18 +32,24 @@
 
             <div class="container">
                 <h1>CREATE PARCEL DELIVERY ORDER</h1>
-                    <form action="all-orders.html">
+                    <form action="#">
+                        <span><p id="error"></p></span>
+                        <span><p id="message"></p></span>
                     
-        <input type="number" placeholder="Enter Parcel Weight ">
+                    <input type="text" placeholder="parcel_description" id="parcel_description">
                                           
-                    <input type="text" name="location" placeholder="From Address e.g Ntinda Town Council"> <br>                     
-                    
-                    <input type="text" name="nearest_area" placeholder="To Address (delivery address)"><br>
-                    <input type="text" name="receiver_name" placeholder="Enter receiver name">
+                    <input type="number" id="parcel_weight" placeholder="parcel_weight"> <br> 
+                                    
+                    <input type="text" id="parcel_source" placeholder="parcel_source"><br>
+
+                    <input type="text" id="parcel_destination" placeholder=" parcel_destination"> <br>
+
+                    <input type="text" id="receiver_name" placeholder="Enter receiver name">
                     <br>
-                    <input type="number" name="receiver_tel" placeholder="Enter receiver Telephone number">
-                        <button type="submit">CREATE ORDER</button>
+                    <input maxlength="10" type="text" id="receiver_telephone" placeholder="Enter receiver Telephone number starting with a 0" >
+                        <button type="submit" onclick="create_parcel()">CREATE ORDER</button>
                     </form>
+     
             </div>
             </div>
         <div id="footer">

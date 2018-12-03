@@ -1,4 +1,5 @@
 class Api {
+
     async login(url,data){
         const response = await fetch(url,{
             method: 'POST',
@@ -10,8 +11,14 @@ class Api {
         return response_data;
     }
     
-    async get(url) {
-        const response = await fetch(url);
+    async get(url,token) {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization': 'Bearer ' +token
+            }
+        });
         const response_data = await response.json();
         return response_data
     }
@@ -21,9 +28,9 @@ class Api {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json',
-                'Authorization': 'Bearer ' + '${token}'
+                'Authorization': 'Bearer ' +token
             },
-            body : JSON.stringify(data)
+            body : JSON.stringify(data) 
         });
         const response_data = await response.json();
         return response_data

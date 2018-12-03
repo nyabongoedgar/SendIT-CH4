@@ -6,6 +6,8 @@
         <title>Change parcel destination (user) </title>
         <link href="../css/main.css" type="text/css" rel="stylesheet">
         <script src="../js/main.js"></script>
+        <script src= "../js/api.js"></script>
+        <script src= "../js/parcel.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -26,12 +28,8 @@
 
             <div class="container">
                 <h1>CHANGE PICKUP LOCATION</h1>
-                    <form action="all-orders.html">
-                     
-                    <input type="text" name="parcel_number" value="CM37T372H3232900" title="Parcel Reference ID"> <br> 
-                     
-                    <input type="text" name="nearest_area" value="From Kampala City Square"> <br>
-                    <input type="text" name="new_area" placeholder="Enter new pickup address"> <br>
+                    <form action="#">
+                    <input type="text" id="new_area" placeholder="Enter new pickup address"> <br>
                         <button type="submit" id="sbt-button">CHANGE LOCATION</button>
                     </form>
             </div>

@@ -1,7 +1,7 @@
-function change_parcel_destination(){
-    const new_area = document.getElementById('new_area').value;
+function change_status(){
+    const new_status = document.getElementById('status').value;
     var data = {
-        destination : new_area
+        status : new_status
     };
     token = localStorage.getItem('token');
     if (token){

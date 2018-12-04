@@ -45,20 +45,18 @@ function change_current_location(){
 }
 
 
-function get_all_parcels(){
+function get_parcels(){
     token = localStorage.getItem('token');
     if (token){    
 
-        api_object.get(url_view_all,token)
+        api_object.get(url,token)
         .then(data => {
             console.log(data[0]);
-            
+            var content = document.getElementById('content');            
             const parcels = data;
+            content.innerHTML += '<div id="order-view-table"><caption>All orders</caption> <table id="order-table"><tr><th>Parcel ID</th><th>Parcel Description</th><th>Parcel source</th><th>Parcel Destination</th><th>Current location</th><th>Receiver name</th><th>Receiver telephone</th><th>Price quote</th><th>Status</th><th>Weight(kg)</th><th>Date placed</th></tr>'
             for(var i=0; i < parcels.length; i++){
                
-                var tr = document.getElementById('tabrow');
-            
-                var td = createNode('td');
                 var parcel_id = data[i]['parcel_id'];
                 var parcel_description = data[i]['parcel_description'];
                 var parcel_source = data[i]['parcel_source'];
@@ -71,23 +69,12 @@ function get_all_parcels(){
                 var parcel_weight = data[i]['parcel_weight'];
                 var date_created = data[i]['date_created'];
 
-                append(td,parcel_id);
-                append(td,parcel_description);
-                append(td, parcel_description);
-                append(td,parcel_description);
-                append(td,parcel_source);
-                append(td,parcel_destination);
-                append(td,current_location);
-                append(td,receiver_name);
-                append(td,receiver_telephone);
-                append(td,price_quote);
-                append(td,status)
-                append(td,parcel_weight);
-                append(td,date_created);
-                  
-                append(tr,td);
+                document.getElementById('order-table').innerHTML += ' <tr><td>'+ parcel_id+'</td><td>'+parcel_description+'</td><td>'+parcel_source+'</td><td>'+parcel_destination+'</td><td>'+current_location+'</td><td>'+receiver_name+'</td><td>'+receiver_telephone+'</td><td>'+price_quote+'</td><td>'+status+'</td><td>'+parcel_weight+'</td><td>'+date_created+'</td></tr>';
+              
+               
                  
             }
+            content.innerHTML += '</table></div>';
         })
         .catch(error => {
             console.log(error);

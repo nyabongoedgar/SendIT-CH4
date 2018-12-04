@@ -1,5 +1,6 @@
 const api_object = new Api();
 const url = "http://127.0.0.1:5000/api/v2/parcels";
+const update_url = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/destination";
 
 function create_parcel(){  
     const parcel_description = document.getElementById('parcel_description').value;

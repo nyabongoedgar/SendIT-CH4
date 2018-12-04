@@ -1,6 +1,6 @@
 const api_object = new Api();
-const url_status = "http://127.0.0.1:5000/api/v2/parcels/<int:parcelId>/status";
-const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/<int:parcelId>/presentLocation";
+const url_status = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/status";
+const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/presentLocation";
 const url_view_all ="http://127.0.0.1:5000/api/v2/admin/parcels";
 
 function change_status(){
@@ -10,7 +10,7 @@ function change_status(){
     };
     token = localStorage.getItem('token');
     if (token){
-    api_object.update(update_url,data,token)
+    api_object.update(url_status,data,token)
     .then(resp_data =>{
         window.alert(resp_data);
     })
@@ -31,7 +31,7 @@ function change_current_location(){
     };
     token = localStorage.getItem('token');
     if (token){
-    api_object.update(update_url,data,token)
+    api_object.update(url_presentLocation,data,token)
     .then(resp_data =>{
         window.alert(resp_data);
     })

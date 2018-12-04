@@ -19,10 +19,10 @@ function change_status(){
 }
 
 
-function change_parcel_destination(){
-    const new_area = document.getElementById('new_area').value;
+function change_current_location(){
+    const curr_location = document.getElementById('curr_location').value;
     var data = {
-        destination : new_area
+        present_location : curr_location
     };
     token = localStorage.getItem('token');
     if (token){

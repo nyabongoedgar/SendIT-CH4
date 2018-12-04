@@ -45,11 +45,11 @@ function change_current_location(){
 }
 
 
-function get_parcels(){
+function get_all_parcels(){
     token = localStorage.getItem('token');
     if (token){    
 
-        api_object.get(url,token)
+        api_object.get(url_view_all,token)
         .then(data => {
             console.log(data[0]);
             var content = document.getElementById('content');            

@@ -8,9 +8,7 @@ function login(){
         return document.getElementById("login_form").setAttribute("action","users/all-orders.html");
     }
 }
-function change_location(){
-    return window.location.assign("../users/change-parcel-destination.html");
-}
+
 function cancel_order(){
    
     if(window.confirm("Are you sure you want to cancel the order ?")){
@@ -25,20 +23,7 @@ function cancel_order(){
     
 }
 /* admin functions */
-function change_status_admin(){
-    var temp = document.getElementById('status_element').innerHTML;
-    var a = prompt("Please enter the new status of the parcel ['Delivered, 'Pending' or 'cancelled]",temp);
-    if (a.toLowerCase() == 'delivered' || a.toLowerCase() == 'pending' || a.toLowerCase() == 'cancelled'){
-        document.getElementById("status_element").style.backgroundColor="#1aaf2d";
-        var b = document.getElementById('status_element').innerHTML=a.toUpperCase();
-        window.alert('Email notification sent to parcel owner'); 
-        return b
 
-    }
-    else{
-        return window.alert('Wrong Choice, please use Delivered,Pending or cancelled');
-    }
-}
 
 function change_location_admin(){
     var temp = document.getElementById("curr_location").innerHTML;

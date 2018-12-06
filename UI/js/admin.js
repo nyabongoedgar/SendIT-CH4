@@ -1,26 +1,41 @@
 const api_object = new Api();
-const url_status = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/status";
+
 const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/presentLocation";
 const url_view_all ="http://127.0.0.1:5000/api/v2/admin/parcels";
 
+
+
 function change_status(){
-    const new_status = document.getElementById('status').value;
-    var data = {
-        status : new_status
-    };
-    token = localStorage.getItem('token');
-    if (token){
-    api_object.update(url_status,data,token)
-    .then(resp_data =>{
-        window.alert(resp_data);
-    })
-    .catch(error => {
-        return document.getElementById('error').innerHTML = JSON.stringify=(error)
-    } ); 
-    } 
-    else{
-        window.alert('Token missing !');
+    var parcelId = parseInt(document.getElementById('parcelId').innerHTML);
+    const url_status = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/status";
+    var temp = document.getElementById('status_element').innerHTML;
+    var a = prompt("Please enter the new status of the parcel ['Delivered, 'Pending' or 'cancelled]",temp);
+    if (a.toLowerCase() == 'delivered' || a.toLowerCase() == 'pending' || a.toLowerCase() == 'cancelled'){
+        document.getElementById("status_element").style.backgroundColor="#1aaf2d";
+        document.getElementById('status_element').innerHTML=a.toUpperCase();
+        const new_status = a;
+        var data = {
+            status : new_status
+        };
+        token = localStorage.getItem('token');
+        if (token){
+        api_object.update(url_status,data,token)
+        .then(resp_data =>{
+            return true;
+        })
+        .catch(error => {
+            return document.getElementById('error').innerHTML = JSON.stringify=(error)
+        } ); 
+        } 
+        else{
+            window.alert('Token missing !');
+        }
+
     }
+    else{
+        return window.alert('Wrong Choice, please use Delivered,Pending or cancelled');
+    }
+    
 }
 
 
@@ -54,7 +69,7 @@ function get_all_parcels(){
             console.log(data[0]);
             var content = document.getElementById('content');            
             const parcels = data;
-            content.innerHTML += '<div id="order-view-table"><caption>All orders</caption> <table id="order-table"><tr><th>Parcel ID</th><th>Parcel Description</th><th>Parcel source</th><th>Parcel Destination</th><th>Current location</th><th>Receiver name</th><th>Receiver telephone</th><th>Price quote</th><th>Status</th><th>Weight(kg)</th><th>Date placed</th></tr>'
+            content.innerHTML += '<div id="order-view-table"><caption>All orders</caption> <table id="order-table"><tr><th>Parcel ID</th><th>Parcel Description</th><th>Parcel source</th><th>Parcel Destination</th><th>Current location</th><th>Receiver name</th><th>Receiver telephone</th><th>Price quote</th><th>Status</th><th>Weight(kg)</th><th>Date placed</th><th>Status</th><th>Present location</th></tr>'
             for(var i=0; i < parcels.length; i++){
                
                 var parcel_id = data[i]['parcel_id'];
@@ -69,7 +84,7 @@ function get_all_parcels(){
                 var parcel_weight = data[i]['parcel_weight'];
                 var date_created = data[i]['date_created'];
 
-                document.getElementById('order-table').innerHTML += ' <tr><td>'+ parcel_id+'</td><td>'+parcel_description+'</td><td>'+parcel_source+'</td><td>'+parcel_destination+'</td><td>'+current_location+'</td><td>'+receiver_name+'</td><td>'+receiver_telephone+'</td><td>'+price_quote+'</td><td>'+status+'</td><td>'+parcel_weight+'</td><td>'+date_created+'</td></tr>';
+                document.getElementById('order-table').innerHTML += ' <tr><td id="parcelId">'+ parcel_id+'</td><td>'+parcel_description+'</td><td>'+parcel_source+'</td><td>'+parcel_destination+'</td><td>'+current_location+'</td><td>'+receiver_name+'</td><td>'+receiver_telephone+'</td><td>'+price_quote+'</td><td id="status_element">'+status+'</td><td>'+parcel_weight+'</td><td>'+date_created+'</td><td><button class="edit-button"  onclick="change_status()"><img class="pencil" src="../images/pencil.png" title="cancel order"></button></td><td><button class="edit-button" onclick="change_location_admin()"><img class="pencil" src="../images/pencil.png" title="Edit order"></button></td></tr>';
               
                
                  

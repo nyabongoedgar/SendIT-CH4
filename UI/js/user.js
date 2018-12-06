@@ -19,6 +19,11 @@ function login(){
         else if (resp_data.message == "password does not match !"){
             return document.getElementById("error").innerHTML = "password does not match !";
         }
+        else if(resp_data.admin == 'ok'){
+            token = resp_data["token"];
+            localStorage.setItem('token',token);
+            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/UI/admin/all-orders.html")
+        }
         else{
             token = resp_data["token"];
             localStorage.setItem('token',token);

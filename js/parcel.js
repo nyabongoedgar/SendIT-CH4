@@ -1,8 +1,9 @@
 const api_object = new Api();
-const url = "http://127.0.0.1:5000/api/v2/parcels";
-const update_url = "http://127.0.0.1:5000/api/v2/parcels/${parcelId}/destination";
+const url = "https://sendit299.herokuapp.com/api/v2/parcels";
+
 
 function create_parcel(){  
+    
     const parcel_description = document.getElementById('parcel_description').value;
     const parcel_weight = document.getElementById('parcel_weight').value;
     const parcel_source= document.getElementById('parcel_source').value;
@@ -24,11 +25,10 @@ function create_parcel(){
     if (token){
         api_object.post(url,data,token)
         .then(resp_data =>{
-            // return document.getElementById("message").innerHTML = resp_data.message;
-            return window.location.assign('file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/UI/users/all-orders.html');
+            return window.location.assign('https://sendit300.herokuapp.com/users/all-orders.html');
             })
         .catch(error => {
-             document.getElementById("error").innerHTML = JSON.stringify(error); 
+             window.alert(JSON.stringify(error)); 
             });
     }
     else{
@@ -44,7 +44,7 @@ function get_all_parcels(){
 
         api_object.get(url,token)
         .then(data => {
-            // console.log(data[0]);
+            
             var content = document.getElementById('content');            
             const parcels = data;
             content.innerHTML += '<div id="order-view-table"><caption>All orders</caption> <table id="order-table"><tr><th>Parcel ID</th><th>Parcel Description</th><th>Parcel source</th><th>Parcel Destination</th><th>Current location</th><th>Receiver name</th><th>Receiver telephone</th><th>Price quote</th><th>Status</th><th>Weight(kg)</th><th>Date placed</th><th>Change destination</th></tr>'
@@ -70,7 +70,7 @@ function get_all_parcels(){
             content.innerHTML += '</table></div>';
         })
         .catch(error => {
-            console.log(error);
+            window.alert(JSON.stringify(error));
         });
         
 
@@ -87,7 +87,7 @@ function get_all_parcels(){
                 var cells = this.cells; //cells collection
                 var parcelId = parseInt(cells[0].innerHTML);
                 
-                const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/destination";
+                const url_destination = "https://sendit299.herokuapp.com/api/v2/parcels/"+parcelId+"/destination";
                 var temp = cells[3].innerHTML; //current destination
                 var a = prompt("Please enter new destination of the parcel",temp);
                 if (a.trim() !==''){
@@ -100,12 +100,12 @@ function get_all_parcels(){
                     };
                     token = localStorage.getItem('token');
                     if (token){
-                    api_object.update(url_presentLocation,data,token)
+                    api_object.update(url_destination,data,token)
                     .then(resp_data =>{
-                        window.alert(resp_data);
+                        return;
                     })
                     .catch(error => {
-                        return document.getElementById('error').innerHTML = JSON.stringify=(error)
+                        window.alert(JSON.stringify(error));
                     } ); 
                     } 
                     else{

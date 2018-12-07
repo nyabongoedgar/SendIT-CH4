@@ -1,7 +1,7 @@
 const api_object = new Api();
 
 function login(){
-    const url = "http://127.0.0.1:5000/api/v2/auth/login";
+    const url = "https://sendit299.herokuapp.com/api/v2/auth/login";
     
     var data = {
                 username : document.getElementById('username').value ,
@@ -22,21 +22,21 @@ function login(){
         else if(resp_data.admin == 'ok'){
             token = resp_data["token"];
             localStorage.setItem('token',token);
-            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/UI/admin/all-orders.html")
+            window.location.assign("https://sendit300.herokuapp.com/admin/all-orders.html")
         }
         else{
             token = resp_data["token"];
             localStorage.setItem('token',token);
-            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/UI/users/create-parcel-delivery-order.html")
+            window.location.assign("https://sendit300.herokuapp.com/users/create-parcel-delivery-order.html")
         }
     })
     .catch(error => {
-        document.getElementById("error").innerHTML = JSON.stringify(error);
+        window.alert(JSON.stringify(error));
     });
 }
 
 function register_user(){
-    const url = "http://127.0.0.1:5000/api/v2/auth/signup";
+    const url = "https://sendit299.herokuapp.com/api/v2/auth/signup";
     password = document.getElementById('password').value;
     password2 = document.getElementById('password2').value;
     if(password != password2){
@@ -65,6 +65,6 @@ function register_user(){
         }
     })
     .catch(error => {
-        document.getElementById("error").innerHTML = JSON.stringify(error);
+        window.alert(JSON.stringify(error));
     });
 }

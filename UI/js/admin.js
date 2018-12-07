@@ -1,30 +1,72 @@
 const api_object = new Api();
-// function rowHandler(){
-//     var table = document.getElementById('order-table');
-//     var rows = table.getElementsByTagName('tr');
-//     for (var i = 1; i < rows.length; i++){
-//         rows[i].i = i;
-//         rows[i].onclick = function(){
-//             parcelId = table.rows[this.i].cells[0].innerHTML; 
-//             return parcelId
-//         };
 
-//     }
+function change_current_location(){
+    var table = document.getElementById('order-table');
+    var rows = table.rows //rows collection
+    for (var i = 1; i < rows.length; i++){
+        rows[i].onclick = function(){
+            if(this.parentNode.nodeName == 'thead'){
+                return;
+            }
+            var cells = this.cells; //cells collection
+            var parcelId = parseInt(cells[0].innerHTML);
+            
+            const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/presentLocation";
+            var temp = cells[4].innerHTML; //current location
+            var a = prompt("Please enter current location of the parcel",temp);
+            if (a.trim() !==''){
+                cells[4].innerHTML = a.toUpperCase(); //updating current location
+                cells[4].style.backgroundColor="#1aaf2d"; //changing bg color
+
+            
+                var data = {
+                    present_location : a
+                };
+                token = localStorage.getItem('token');
+                if (token){
+                api_object.update(url_presentLocation,data,token)
+                .then(resp_data =>{
+                    window.alert(resp_data);
+                })
+                .catch(error => {
+                    return document.getElementById('error').innerHTML = JSON.stringify=(error)
+                } ); 
+                } 
+                else{
+                    window.alert('Token missing !');
+                }
+
+            } else{
+                window.alert('The location should not be a space ');
+            }
+        }
+         
+    }
      
-// }
+}
 
 
 
 
 
 function change_status(){
-    var parcelId = parseInt(document.getElementById('parcelId').innerHTML);
+    var table = document.getElementById('order-table');
+    var rows = table.rows //rows collection
+    for (var i = 1; i < rows.length; i++){
+        rows[i].onclick = function(){
+            if(this.parentNode.nodeName == 'thead'){
+                return;
+            }
+            var cells = this.cells; //cells collection
+            var parcelId = parseInt(cells[0].innerHTML);
+
+    
     const url_status = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/status";
-    var temp = document.getElementById('status_element').innerHTML;
+    var temp = cells[8].innerHTML; //status cell
     var a = prompt("Please enter the new status of the parcel ['Delivered, 'Pending' or 'cancelled]",temp);
     if (a.toLowerCase() == 'delivered' || a.toLowerCase() == 'pending' || a.toLowerCase() == 'cancelled'){
-        document.getElementById("status_element").style.backgroundColor="#1aaf2d";
-        document.getElementById('status_element').innerHTML=a.toUpperCase();
+        cells[8].style.backgroundColor="#1aaf2d"; //changing status bg color
+        cells[8].innerHTML=a.toUpperCase(); //changing case to upper case
         const new_status = a;
         var data = {
             status : new_status
@@ -47,46 +89,11 @@ function change_status(){
     else{
         return window.alert('Wrong Choice, please use Delivered,Pending or cancelled');
     }
+}
     
 }
-
-
-function change_current_location(parcelId){
-    // var parcelId = parseInt(document.getElementById('parcelId').innerHTML);
-    // var parcelId = rowHandler();
-    console.log(parcelId);
-    
-    const url_presentLocation = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/presentLocation";
-    var temp = document.getElementById("curr_location").innerHTML;
-    var a = prompt("Please enter current location of the parcel",temp);
-    if (a.trim() !==''){
-        document.getElementById("curr_location").innerHTML = a.toUpperCase();
-        document.getElementById("curr_location").style.backgroundColor="#1aaf2d";
-
-    
-        var data = {
-            present_location : a
-        };
-        token = localStorage.getItem('token');
-        if (token){
-        api_object.update(url_presentLocation,data,token)
-        .then(resp_data =>{
-            window.alert(resp_data);
-        })
-        .catch(error => {
-            return document.getElementById('error').innerHTML = JSON.stringify=(error)
-        } ); 
-        } 
-        else{
-            window.alert('Token missing !');
-        }
-
-    } else{
-        window.alert('The location should not be a space ');
-    }
-
-    
 }
+
 
  
 
@@ -116,7 +123,7 @@ function get_all_parcels(){
                 var parcel_weight = data[i]['parcel_weight'];
                 var date_created = data[i]['date_created'];
 
-                document.getElementById('order-table').innerHTML += ' <tr><td id="parcelId">'+ parcel_id+'</td><td>'+parcel_description+'</td><td>'+parcel_source+'</td><td>'+parcel_destination+'</td><td id="curr_location">'+current_location+'</td><td>'+receiver_name+'</td><td>'+receiver_telephone+'</td><td>'+price_quote+'</td><td id="status_element">'+status+'</td><td>'+parcel_weight+'</td><td>'+date_created+'</td><td><button class="edit-button"  onclick="change_status()"><img class="pencil" src="../images/pencil.png" title="cancel order"></button></td><td><button class="edit-button" onclick="change_current_location(parcelId)"><img class="pencil" src="../images/pencil.png" title="Edit order"></button></td></tr>';
+                document.getElementById('order-table').innerHTML += ' <tr><td id="parcelId">'+ parcel_id+'</td><td>'+parcel_description+'</td><td>'+parcel_source+'</td><td>'+parcel_destination+'</td><td id="curr_location">'+current_location+'</td><td>'+receiver_name+'</td><td>'+receiver_telephone+'</td><td>'+price_quote+'</td><td id="status_element">'+status+'</td><td>'+parcel_weight+'</td><td>'+date_created+'</td><td><button class="edit-button"  onclick="change_status()"><img class="pencil" src="../images/pencil.png" title="cancel order"></button></td><td><button class="edit-button" onclick="change_current_location();"><img class="pencil" src="../images/pencil.png" title="Edit order"></button></td></tr>';
               
                
                  

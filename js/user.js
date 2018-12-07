@@ -68,3 +68,7 @@ function register_user(){
         window.alert(JSON.stringify(error));
     });
 }
+
+function logout(){
+    return localStorage.removeItem('token');
+}

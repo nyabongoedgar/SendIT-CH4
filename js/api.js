@@ -52,9 +52,9 @@ class Api {
     async register(url,data){
         const response = await fetch(url, {
             method: "POST",
-            mod: "cors",
+            mode: "cors",
             headers: {
-                "Content-Type":"application/json; charset=utf-8",
+                "Content-Type":"application/json;",
             },
             body : JSON.stringify(data)
         });

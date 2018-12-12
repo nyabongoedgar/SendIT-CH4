@@ -17,7 +17,7 @@ html,body{
     text-align:center;
     min-height:100%; 
     color: #000; 
-    background-color:#fefefe;
+    background-color: #f1f1f1!important;
 }
 #footer{
     height:70px;

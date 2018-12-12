@@ -1,5 +1,13 @@
-body{
-    background-color: #14B9D6!important;
+#content{
+        padding-top: 3%;
+        padding-bottom: 70px;
+        text-align: center;
+        min-height: 100%;
+        color: #000;
+        background-color: #f1f1f1!important;
+        background-image: url(../images/virtualonboardcourier.jpg)!important;
+        background-size: cover!important;
+    
 }
 #right-float{
     float:right;
@@ -7,4 +15,25 @@ body{
 #left-float{
     float:left;
 }
- 
+#header{
+    height:40px;
+    background-color:#222!important;
+}
+.SendIT {
+    font-size: 30px;
+    font-family: "LCD";
+    color: #ffffff;
+    
+  }
+
+#intro-div {
+    height: 66px;
+    margin: 0 20px 0 20px;
+}
+  
+  #intro{
+      font-size: 19px;
+      font-family: 'Trebuchet MS';
+      line-height: 1.8;
+  }
+  

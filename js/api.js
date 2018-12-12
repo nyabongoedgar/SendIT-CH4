@@ -1,15 +1,6 @@
-class Api {
 
-    async login(url,data){
-        const response = await fetch(url,{
-            method: 'POST',
-            headers : {'Content-type':'application/json'},
-            body: JSON.stringify(data)
-        });
-        const response_data = await response.json();
-        console.log(response_data);
-        return response_data;
-    }
+
+ class Api{   
     
     async get(url,token) {
         const response = await fetch(url, {
@@ -49,23 +40,7 @@ class Api {
         return response_data
     }
 
-    async register(url,data){
-        const response = await fetch(url, {
-            method: "POST",
-            mod: "cors",
-            headers: {
-                "Content-Type":"application/json; charset=utf-8",
-            },
-            body : JSON.stringify(data)
-        });
-        const response_data = await response.json();
-        return response_data
-    }
-
-
-
-
-
+    
 }
 
 

@@ -1,42 +1,49 @@
-const api_object = new Api();
 
 function login(){
-    const url = "http://127.0.0.1:5000/api/v2/auth/login";
+    let url = "http://127.0.0.1:5000/api/v2/auth/login";
     
-    var data = {
+    var user_data = {
                 username : document.getElementById('username').value ,
                 password : document.getElementById('password').value
             };
-    api_object.login(url, data)
-    .then(resp_data => {
-        if (resp_data.message == "No data has been sent"){
-            return document.getElementById("error").innerHTML = "No data has been sent";
-
+    fetch(url,{
+        method: 'POST',
+        headers : {'Content-type':'application/json'},
+        body: JSON.stringify(user_data)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        
+        if(data.message == "Wrong username"){
+            console.log("Wrong username");
+            return document.getElementById("error").innerHTML = "Wrong credentials";
+            
         }
-        else if(resp_data.message == "Verification of credentials failed !"){
+        else if (data.message == "No data has been sent"){
             return document.getElementById("error").innerHTML = "No data has been sent";
-        }
-        else if (resp_data.message == "password does not match !"){
+        } 
+        else if (data.message == "password does not match !"){
             return document.getElementById("error").innerHTML = "password does not match !";
         }
-        else if(resp_data.admin == 'ok'){
-            token = resp_data["token"];
+        else if(data.admin == 'ok'){
+            token = data["token"];
             localStorage.setItem('token',token);
             window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/admin/all-orders.html")
         }
         else{
-            token = resp_data["token"];
+            token = data["token"];
             localStorage.setItem('token',token);
             window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/users/create-parcel-delivery-order.html")
         }
-    })
-    .catch(error => {
-        window.alert(JSON.stringify(error));
-    });
+    })      
+    .catch(error => console.log(error));
 }
 
+
+
+
 function register_user(){
-    const url = "http://127.0.0.1:5000/api/v2/auth/signup";
+    let url = "http://127.0.0.1:5000/api/v2/auth/signup";
     password = document.getElementById('password').value;
     password2 = document.getElementById('password2').value;
     if(password != password2){
@@ -48,26 +55,35 @@ function register_user(){
                 password : document.getElementById('password').value,
                 email : document.getElementById('email').value 
             };
-    api_object.register(url, data)
-    .then(resp_data => {
-        if (resp_data.message == "Password field can not be left empty."){
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json; charset=utf-8",
+        },
+        body : JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.message == "Password field can not be left empty."){
             return document.getElementById("error").innerHTML = "Password field can not be left empty.";
 
         }
-        else if(resp_data.message == "Username field can not be empty."){
+        else if(data.message == "Username field can not be empty."){
             return document.getElementById("error").innerHTML = "Username field can not be empty.";
         }
-        else if (resp_data.message == "Email field can not be empty."){
+        else if (data.message == "Email field can not be empty."){
             return document.getElementById("error").innerHTML = "Email field can not be empty.";
         }
         else{
-            return document.getElementById(error).innerHTML == "You have been successfully registered !";
+            window.location.assign('home.html');
         }
+
     })
-    .catch(error => {
-        window.alert(JSON.stringify(error));
-    });
-}
+
+    .catch(error => console.log(JSON.stringify(error)));
+
+    }
 
 function logout(){
     return localStorage.removeItem('token');

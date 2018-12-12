@@ -1,5 +1,5 @@
 const api_object = new Api();
-const url = "https://sendit299.herokuapp.com/api/v2/parcels";
+const url = "http://127.0.0.1:5000/api/v2/parcels";
 
 
 function create_parcel(){  
@@ -25,7 +25,7 @@ function create_parcel(){
     if (token){
         api_object.post(url,data,token)
         .then(resp_data =>{
-            return window.location.assign('https://sendit300.herokuapp.com/users/all-orders.html');
+            return window.location.assign('file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/users/all-orders.html');
             })
         .catch(error => {
              window.alert(JSON.stringify(error)); 
@@ -87,7 +87,7 @@ function get_all_parcels(){
                 var cells = this.cells; //cells collection
                 var parcelId = parseInt(cells[0].innerHTML);
                 
-                const url_destination = "https://sendit299.herokuapp.com/api/v2/parcels/"+parcelId+"/destination";
+                const url_destination = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/destination";
                 var temp = cells[3].innerHTML; //current destination
                 var a = prompt("Please enter new destination of the parcel",temp);
                 if (a.trim() !==''){
@@ -102,7 +102,7 @@ function get_all_parcels(){
                     if (token){
                     api_object.update(url_destination,data,token)
                     .then(resp_data =>{
-                        return;
+                        return window.alert('Destination changed');
                     })
                     .catch(error => {
                         window.alert(JSON.stringify(error));

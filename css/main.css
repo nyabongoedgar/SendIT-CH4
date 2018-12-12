@@ -60,8 +60,9 @@ p {
 
 #logo img{
     width: 107px;
-    height: 80px;
-    float:left; 
+    height: 64px;
+    float: left;
+    border: 8px solid rgb(34, 34, 34) 
 }
 .pencil{
     width:30px;height:30px;
@@ -115,14 +116,14 @@ input[type=text],input[type=password],input[type=number]{
 }
 
 .active {
-    background-color: #0F91A8;
+    background-color: #009688!important;
 }
 
 
 /* new nav */
 
 nav ul{
-    background-color: #14B9D6!important;
+    background-color: #222!important;
     overflow: hidden;
     height: auto;
     margin: 0;

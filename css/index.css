@@ -16,15 +16,10 @@
     float:left;
 }
 #header{
-    height:40px;
+    height:80px;
     background-color:#222!important;
 }
-.SendIT {
-    font-size: 30px;
-    font-family: "LCD";
-    color: #ffffff;
-    
-  }
+
 
 #intro-div {
     height: 66px;

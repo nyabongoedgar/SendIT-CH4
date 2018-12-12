@@ -28,11 +28,11 @@ function create_parcel(){
             return window.location.assign('file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/users/all-orders.html');
             })
         .catch(error => {
-             window.alert(JSON.stringify(error)); 
+             console.log(error); 
             });
     }
     else{
-        window.alert('Token missing !');
+        console.log('Token missing !');
     }
 
         }
@@ -69,10 +69,7 @@ function get_all_parcels(){
             }
             content.innerHTML += '</table></div>';
         })
-        .catch(error => {
-            window.alert(JSON.stringify(error));
-        });
-        
+        .catch((error)=> console.log(error));       
 
     }}
 
@@ -102,14 +99,12 @@ function get_all_parcels(){
                     if (token){
                     api_object.update(url_destination,data,token)
                     .then(resp_data =>{
-                        return window.alert('Destination changed');
+                        window.alert(resp_data.message);
                     })
-                    .catch(error => {
-                        window.alert(JSON.stringify(error));
-                    } ); 
+                    .catch((error)=> console.log(error)); 
                     } 
                     else{
-                        window.alert('Token missing !');
+                        console.log('Token missing !');
                     }
     
                 } else{

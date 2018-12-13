@@ -11,7 +11,7 @@ function change_current_location(){
             var cells = this.cells; //cells collection
             var parcelId = parseInt(cells[0].innerHTML);
             
-            const url_presentLocation ="http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/presentLocation";
+            const url_presentLocation ="http://sendit299.herokuapp.com/api/v2/parcels/"+parcelId+"/presentLocation";
             var temp = cells[4].innerHTML; //current location
             var a = prompt("Please enter current location of the parcel",temp);
             if (a.trim() !==''){
@@ -61,7 +61,7 @@ function change_status(){
             var parcelId = parseInt(cells[0].innerHTML);
 
     
-    const url_status = "http://127.0.0.1:5000/api/v2/parcels/"+parcelId+"/status";
+    const url_status = "http://sendit299.herokuapp.com/api/v2/parcels/"+parcelId+"/status";
     var temp = cells[8].innerHTML; //status cell
     var a = prompt("Please enter the new status of the parcel ['Delivered, 'Pending' or 'cancelled]",temp);
     if (a.toLowerCase() == 'delivered' || a.toLowerCase() == 'pending' || a.toLowerCase() == 'cancelled'){
@@ -99,7 +99,7 @@ function change_status(){
 
 
 function get_all_parcels(){
-    const url_view_all ="http://127.0.0.1:5000/api/v2/admin/parcels";
+    const url_view_all ="http://sendit299.herokuapp.com/api/v2/admin/parcels";
     token = localStorage.getItem('token');
     if (token){    
 

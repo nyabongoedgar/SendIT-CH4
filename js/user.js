@@ -1,6 +1,6 @@
 
 function login(){
-    let url = "http://127.0.0.1:5000/api/v2/auth/login";
+    let url = "http://sendit299.herokuapp.com/api/v2/auth/login";
     
     var user_data = {
                 username : document.getElementById('username').value ,
@@ -28,12 +28,12 @@ function login(){
         else if(data.admin == 'ok'){
             token = data["token"];
             localStorage.setItem('token',token);
-            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/admin/all-orders.html")
+            window.location.assign("http://sendit300.herokuapp.com/admin/all-orders.html")
         }
         else{
             token = data["token"];
             localStorage.setItem('token',token);
-            window.location.assign("file:///C:/Users/Timothy/Desktop/bootcamp%2014/challenge%204/SendIT-CH4/users/create-parcel-delivery-order.html")
+            window.location.assign("http://sendit300.herokuapp.com/users/create-parcel-delivery-order.html")
         }
     })      
     .catch(error => console.log(error));
@@ -43,7 +43,7 @@ function login(){
 
 
 function register_user(){
-    let url = "http://127.0.0.1:5000/api/v2/auth/signup";
+    let url = "http://sendit299.herokuapp.com/api/v2/auth/signup";
     password = document.getElementById('password').value;
     password2 = document.getElementById('password2').value;
     if(password != password2){

@@ -13,13 +13,14 @@
     text-align: left;
     padding: 8px;
 }
-#order-view-table tr:nth-child(even) {
+#order-view-table tr:nth-of-type(even) {
     height: 35px;
-	background-color: #0F91A8;
+    background-color: #087d92;
+	
 }
 #order-view-table tr:nth-of-type(odd) {
 	height: 35px;
-	background-color: #14B9D6;
+	background-color: #075a69;
 }
 #order-view-table tr  a{
     color:#fff;

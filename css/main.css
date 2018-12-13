@@ -172,9 +172,9 @@ nav ul li a{
     }
     #menu-icon-div{
         height: 46px;
-        background-color: #14B9D6!important;
+        background-color: #222!important;
         padding-right: 10px;
-        border-bottom: 1px solid #58cbe0;
+        border-bottom: 1px solid #0e0401;
     }
     nav ul{
         list-style-type: none;
